@@ -1,3 +1,0 @@
-rails_env: staging
-webserver_name: staging.example.com
-db_password: super_secret
