@@ -1,0 +1,55 @@
+---
+# Ruby from source playbook (https://github.com/jgrowl/ansible-playbook-ruby-from-src)
+- name: upgrade
+  action: apt update_cache=yes upgrade=yes
+
+- name: install ruby dependencies
+  action: apt pkg={{ item }} state=installed
+  with_items:
+    - build-essential
+    - automake
+    - bison
+    - autoconf
+    - pkg-config
+    - libreadline6
+    - libreadline6-dev
+    - openssl
+    - libssl-dev
+    - curl
+    - git-core
+    - zlib1g
+    - zlib1g-dev
+    - libyaml-dev
+    - libsqlite3-dev
+    - libxml2-dev
+    - libxslt1-dev
+    - curl
+
+- name: install app dependencies
+  action: apt pkg={{ item }} state=installed
+  with_items:
+    - libpq-dev
+    - nodejs
+    - imagemagick
+  tags: package
+
+- name: ruby-from-src | ensure directory temporary ruby download directory is present
+  file: state=directory path={{ ruby_tmp_dir }}
+
+- name: ruby-from-src | download ruby source
+  get_url: url={{ ruby_url }} dest={{ ruby_tmp_dir }}
+
+- name: ruby-from-src | ensure ruby is extracted
+  command: tar -xf {{ ruby_compressed_file }} chdir={{ ruby_tmp_dir }} creates={{ tmp_ruby_path }}
+
+- name: ruby-from-src | ensure ruby is configured
+  command: ./configure chdir={{ tmp_ruby_path }} creates={{ tmp_ruby_path }}/Makefile
+
+- name: ruby-from-src | ensure ruby is compiled
+  command: make chdir={{ tmp_ruby_path }} creates={{ tmp_ruby_path }}/ruby
+
+- name: ruby-from-src | ensure ruby is installed
+  command: make install chdir={{ tmp_ruby_path }} creates=/usr/local/bin/ruby
+
+- name: install Bundler
+  command: gem install bundler
