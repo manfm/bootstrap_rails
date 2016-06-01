@@ -1,3 +1,0 @@
-rails_env: production
-webserver_name: example.com
-db_password: uber_secret
