@@ -1,5 +1,5 @@
-app_name: my_app
-deploy_user: my_user
+app_name: bootstrap_rails
+deploy_user: ubuntu
 deploy_directory: "/home/{{ deploy_user }}/apps/{{ app_name }}"
 config_directory: "{{ deploy_directory }}/shared/config"
 ruby_tmp_dir: /usr/local/src
