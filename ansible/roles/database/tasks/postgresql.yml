@@ -24,15 +24,18 @@
 
 - name: Ensure database is created
   postgresql_db: name={{ db_name }}
-  sudo: yes
-  sudo_user: postgres
+  become: yes
+  become_method: sudo
+  become_user: postgres
 
 - name: Ensure user has access to database
   postgresql_user: db={{ db_name }} name={{ db_user }} password={{ db_password }} priv=ALL
-  sudo: yes
-  sudo_user: postgres
+  become: yes
+  become_method: sudo
+  become_user: postgres
 
 - name: Ensure user does not have unnecessary privilege
   postgresql_user: name={{ db_user }} role_attr_flags=NOSUPERUSER,NOCREATEDB
-  sudo: yes
-  sudo_user: postgres
+  become: yes
+  become_method: sudo
+  become_user: postgres

@@ -1,3 +1,6 @@
-- include: ruby.yml tags=ruby
-- include: user.yml tags=user
-- include: nginx.yml tags=nginx
+- include: ruby.yml
+  tags: ruby
+- include: user.yml
+  tags: user
+- include: nginx.yml
+  tags: nginx

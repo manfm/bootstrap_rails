@@ -4,4 +4,7 @@
 - authorized_key: user={{ deploy_user }} key="{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
 
 - name: ensure config directory is present
-  command: su -c "mkdir -p {{ config_directory }}" {{ deploy_user }}
+  command: mkdir -p {{ config_directory }}
+  become: yes
+  become_method: sudo
+  become_user: "{{ deploy_user }}"
