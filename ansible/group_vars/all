@@ -8,4 +8,4 @@ ruby_compressed_file: ruby-2.1.2.tar.gz
 ruby_name: ruby-2.1.2
 tmp_ruby_path: "{{ ruby_tmp_dir }}/{{ ruby_name }}"
 db_name: "{{ app_name }}_{{ rails_env }}"
-db_user: "{{ deploy_user }}"
+db_user: "{{ app_name }}"

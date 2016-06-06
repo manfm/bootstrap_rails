@@ -3,7 +3,7 @@ lock '3.5.0'
 
 set :application, 'bootstrap_rails'
 set :repo_url, 'git@github.com:manfm/bootstrap_rails.git'
-# set :deploy_via, :copy
+set :deploy_via, :copy
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp

@@ -1,0 +1,10 @@
+---
+- name: copy config to server
+  hosts: all
+  gather_facts: false
+  become: yes
+  tasks:
+    - name: copy rails db config
+      copy: src=../config/database.yml dest=/home/ubuntu/apps/bootstrap_rails/shared/config/database.yml
+    - name: copy secrets config
+      copy: src=../config/secrets.yml dest=/home/ubuntu/apps/bootstrap_rails/shared/config/secrets.yml

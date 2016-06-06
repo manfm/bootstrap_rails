@@ -82,4 +82,4 @@ production:
   <<: *default
   database: bootstrap_rails_production
   username: bootstrap_rails
-  password: abc123
+  password: <%= ENV['BOOTSTRAP_RAILS_DATABASE_PASSWORD'] %>
