@@ -2,8 +2,7 @@
 - name: apply common configuration to all nodes
   hosts: all
   gather_facts: false
-  user: root
-
+  become: yes
   roles:
     - webserver
     - database

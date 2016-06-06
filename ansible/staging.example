@@ -1,3 +1,2 @@
 [staging]
-192.0.2.0
-
+192.0.2.0 ansible_user=ubuntu
